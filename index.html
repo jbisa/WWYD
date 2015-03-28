@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript" src="js/controllers/wwydCtrl.js"></script>
+    <script type="text/javascript" src="js/services/wwydService.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/wwyd.css">
+
+    <title>What Would Yeezus Do?</title>
+</head>
+<body ng-app="wwydApp">
+    <div ng-controller="WWYDCtrl" ng-init="init()" class="container">
+
+        <div id="header">
+            <h2>WHAT WOULD YEEZUS DO?</h2>
+        </div>
+
+        <div id="main">
+            <button class="btn btn-default center-block" ng-click="somethingElse()">SOMETHING ELSE</button>
+
+            <p>Now Playing: {{title}}<p>
+
+            <div id="video-player" class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" ng-src="{{link}}" frameborder="0" allowfullscreen></iframe>
+                <!--"?autoplay=1"-->
+            </div>
+        </div>
+
+        <div id="footer">
+            <p>Created by <a href="https://www.twitter.com/wovfn" target="_blank">Jay Bisa</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>

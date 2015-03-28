@@ -1,0 +1,38 @@
+body {
+    background-color:black;
+}
+
+h2 {
+    color:white;
+    text-align:center;
+    font-weight:bold;
+}
+
+p {
+    color:white;
+    text-align:center;
+    position:relative;
+    top:10px;
+    font-weight:bold;
+}
+
+.btn-default {
+    background-color: orange;
+    border-color:black;
+    font-weight:bold;
+}
+
+.btn-default:hover, .btn-default:focus {
+    background-color:darkorange;
+    border-color:black;
+}
+
+#video-player {
+    position:relative;
+    top:15px;
+}
+
+#footer {
+    position:relative;
+    top:15px;
+}

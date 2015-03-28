@@ -10,11 +10,10 @@ myApp.controller('WWYDCtrl', ['$scope', '$sce', 'WWYDService', function($scope, 
 
     $scope.init = function() {
         $scope.videos = WWYDService.getVideos();
-        var id = Math.floor(Math.random() * $scope.videos.length) + 1;
+        var id = Math.floor(Math.random() * $scope.videos.length);
         $scope.title = $scope.videos[id].title;
         $scope.link = $sce.trustAsResourceUrl($scope.videos[id].link);
     }
-
 
     $scope.somethingElse = function() {
         var id = Math.floor(Math.random() * $scope.videos.length);

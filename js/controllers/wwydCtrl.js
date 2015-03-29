@@ -4,29 +4,24 @@
  * Angular controller which talks to the model and updates the view
  */
 
-var myApp = angular.module('wwydApp', [])
+var myApp = angular.module('wwydApp', ['ngResource'])
 
-myApp.controller('WWYDCtrl', ['$scope', '$sce', 'WWYDService', function($scope, $sce, WWYDService) {
+myApp.controller('WWYDCtrl', ['$scope', '$sce', '$resource', function($scope, $sce, $resource) {
 
     $scope.init = function() {
-        $scope.showTitle = false;
-        $scope.videos = WWYDService.getVideos();
-
-        var id = Math.floor(Math.random() * $scope.videos.length);
-
-        $scope.title = $scope.videos[id].title;
-        $scope.link = $sce.trustAsResourceUrl($scope.videos[id].link);
-        $scope.showTitle = true;
+        var Video = $resource('/rest/videos');
+        Video.query(function (videos) {
+            $scope.videos = videos;
+            var id = Math.floor(Math.random() * $scope.videos.length);
+            $scope.title = $scope.videos[id].title;
+            $scope.link = $sce.trustAsResourceUrl($scope.videos[id].link);
+        })
     }
 
     $scope.somethingElse = function() {
-        $scope.showTitle = false;
-
         var id = Math.floor(Math.random() * $scope.videos.length);
 
         $scope.title = $scope.videos[id].title;
         $scope.link = $sce.trustAsResourceUrl($scope.videos[id].link);
-        $scope.showTitle = true;
     }
-
 }]);

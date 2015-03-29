@@ -4,7 +4,7 @@
 
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('WWYDModel', {
+module.exports = mongoose.model('Video', {
     title: String,
     link: String
 });

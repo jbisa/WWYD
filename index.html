@@ -10,7 +10,7 @@
     <script type="text/javascript" src="js/services/wwydService.js"></script>
     <script type="text/javascript" src="js/directives/twitterDirective.js"></script>
 
-    <!--<script src="http://www.youtube.com/player_api"></script>-->
+    <script src="http://www.youtube.com/player_api"></script>
     <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     <!--<script type="text/javascript" src="bower_components/angular-socialshare/angular-socialshare.min.js"></script>-->
 
@@ -31,17 +31,16 @@
             <button class="btn btn-default center-block" ng-click="somethingElse()">SOMETHING ELSE</button>
 
             <!--<a twitter data-lang="en" data-count='horizontal' data-url='http://localhost:3000/' data-size="medium" data-text='WHAT WOULD YEEZUS DO? Brought to you by @wovfn ' ></a>-->
-                <p class="social" twitter data-text="WHAT WOULD YEEZUS DO? Brought to you by @wovfn #WWYD " data-url="http://localhost:3000/"></p>
+            <p class="social" twitter data-text="WHAT WOULD YEEZUS DO? Brought to you by @wovfn #WWYD " data-url="http://localhost:3000/"></p>
 
-            <!--
-            <p>Now Playing:
-                <span>{{title}}</span>
-            <p>
+            <!-- Autoplay after video ends
+            <div id="player"></div>
             -->
 
             <div id="video-player" class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" ng-src="{{link}}" frameborder="0" allowfullscreen></iframe>
             </div>
+
         </div>
 
         <div id="footer">
@@ -49,6 +48,35 @@
         </div>
 
     </div>
+
+    <!-- Autoplay after video ends -->
+    <script>
+        // create youtube player
+        var player;
+        function onYouTubePlayerAPIReady() {
+            player = new YT.Player('player', {
+                height: '390',
+                width: '640',
+                videoId: 'L53gjP-TtGE',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // autoplay video
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // when video ends
+        function onPlayerStateChange(event) {
+            if(event.data === 0) {
+                event.target.playVideo();
+            }
+        }
+    </script>
 
 </body>
 </html>

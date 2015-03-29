@@ -3,23 +3,23 @@ body {
 }
 
 h2 {
-    color:white;
+    color:#f5f5f5;
     text-align:center;
-    font-weight:bold;
+    font-family:"Gill Sans";
 }
 
 p {
-    color:white;
+    color:#f5f5f5;
     text-align:center;
     position:relative;
     top:10px;
-    font-weight:bold;
+    font-family:"Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
 }
 
 .btn-default {
     background-color: orange;
     border-color:black;
-    font-weight:bold;
+    font-family:"Gill Sans";
 }
 
 .btn-default:hover, .btn-default:focus {

@@ -11,9 +11,11 @@
     <script type="text/javascript" src="js/directives/twitterDirective.js"></script>
 
     <!--<script src="http://www.youtube.com/player_api"></script>-->
-    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    <!--<script type="text/javascript" src="bower_components/angular-socialshare/angular-socialshare.min.js"></script>-->
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
+    <!--<link rel='stylesheet' href="bower_components/angular-socialshare/angular-socialshare.min.css">-->
     <link rel="stylesheet" type="text/css" href="css/wwyd.css">
 
     <title>What Would Yeezus Do?</title>
@@ -28,7 +30,8 @@
         <div id="main">
             <button class="btn btn-default center-block" ng-click="somethingElse()">SOMETHING ELSE</button>
 
-            <a class="social" twitter data-text="WHAT WOULD YEEZUS DO? Brought to you by @wovfn #WWYD " data-url="http://localhost:3000/"></a>
+            <!--<a twitter data-lang="en" data-count='horizontal' data-url='http://localhost:3000/' data-size="medium" data-text='WHAT WOULD YEEZUS DO? Brought to you by @wovfn ' ></a>-->
+                <p class="social" twitter data-text="WHAT WOULD YEEZUS DO? Brought to you by @wovfn #WWYD " data-url="http://localhost:3000/"></p>
 
             <!--
             <p>Now Playing:

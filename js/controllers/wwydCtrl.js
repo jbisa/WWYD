@@ -9,6 +9,7 @@ var myApp = angular.module('wwydApp', ['ngResource'])
 myApp.controller('WWYDCtrl', ['$scope', '$sce', '$resource', function($scope, $sce, $resource) {
 
     $scope.init = function() {
+        // Eventually make this an angular service
         var Video = $resource('/rest/videos');
         Video.query(function (videos) {
             $scope.videos = videos;
@@ -20,7 +21,6 @@ myApp.controller('WWYDCtrl', ['$scope', '$sce', '$resource', function($scope, $s
 
     $scope.somethingElse = function() {
         var id = Math.floor(Math.random() * $scope.videos.length);
-
         $scope.title = $scope.videos[id].title;
         $scope.link = $sce.trustAsResourceUrl($scope.videos[id].link);
     }

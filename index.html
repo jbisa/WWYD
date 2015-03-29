@@ -9,10 +9,10 @@
     <script type="text/javascript" src="js/controllers/wwydCtrl.js"></script>
     <script type="text/javascript" src="js/services/wwydService.js"></script>
     <script type="text/javascript" src="js/directives/twitterDirective.js"></script>
+    <script type="text/javascript" src="http://a4.g.akamai.net/7/1/9499/v1/defjam.download.akamai.com/9499/kanye-lane/alldayvevo031315/app/scripts/kw.main-33551a3e.js"></script>
 
-    <script src="http://www.youtube.com/player_api"></script>
-    <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    <!--<script type="text/javascript" src="bower_components/angular-socialshare/angular-socialshare.min.js"></script>-->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
     <!--<link rel='stylesheet' href="bower_components/angular-socialshare/angular-socialshare.min.css">-->
@@ -21,6 +21,7 @@
     <title>What Would Yeezus Do?</title>
 </head>
 <body ng-app="wwydApp">
+
     <div ng-controller="WWYDCtrl" ng-init="init()" class="container">
 
         <div id="header">
@@ -30,16 +31,23 @@
         <div id="main">
             <button class="btn btn-default center-block" ng-click="somethingElse()">SOMETHING ELSE</button>
 
-            <!--<a twitter data-lang="en" data-count='horizontal' data-url='http://localhost:3000/' data-size="medium" data-text='WHAT WOULD YEEZUS DO? Brought to you by @wovfn ' ></a>-->
-            <p class="social" twitter data-text="WHAT WOULD YEEZUS DO? Brought to you by @wovfn #WWYD " data-url="http://localhost:3000/"></p>
-
-            <!-- Autoplay after video ends
-            <div id="player"></div>
-            -->
-
-            <div id="video-player" class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" ng-src="{{link}}" frameborder="0" allowfullscreen></iframe>
+            <div class="twitter-stuff">
+                <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://localhost:3000/" data-text="WHAT WOULD YEEZUS DO? Brought to you by @wovfn " data-hashtags="WWYD">
+                    Tweet
+                </a>
+                <script>
+                    !function(d,s,id){
+                        var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                        if(!d.getElementById(id)){
+                            js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
+                            fjs.parentNode.insertBefore(js,fjs);
+                        }
+                    }
+                    (document, 'script', 'twitter-wjs');
+                </script>
             </div>
+
+            <div id="video-player" class="embed-responsive embed-responsive-16by9"></div>
 
         </div>
 
@@ -48,35 +56,6 @@
         </div>
 
     </div>
-
-    <!-- Autoplay after video ends -->
-    <script>
-        // create youtube player
-        var player;
-        function onYouTubePlayerAPIReady() {
-            player = new YT.Player('player', {
-                height: '390',
-                width: '640',
-                videoId: 'L53gjP-TtGE',
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        // autoplay video
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        // when video ends
-        function onPlayerStateChange(event) {
-            if(event.data === 0) {
-                event.target.playVideo();
-            }
-        }
-    </script>
 
 </body>
 </html>

@@ -9,7 +9,7 @@ var express             = require('express'),
     mongoose            = require('mongoose'),
     videosController    = require('./server/controllers/videosController.js');
 
-mongoose.connect('mongodb://localhost:27017/wwyd')
+mongoose.connect('mongodb://localhost:27017/wwyd2')
 
 app.get('/', function(req, res) {
     res.sendFile('/Users/jaybisa/WebstormProjects/WWYD/index.html');

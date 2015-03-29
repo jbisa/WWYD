@@ -5,17 +5,13 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.js"></script>
-    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
     <script type="text/javascript" src="js/controllers/wwydCtrl.js"></script>
     <script type="text/javascript" src="js/services/wwydService.js"></script>
-    <script type="text/javascript" src="js/directives/twitterDirective.js"></script>
-    <script type="text/javascript" src="http://a4.g.akamai.net/7/1/9499/v1/defjam.download.akamai.com/9499/kanye-lane/alldayvevo031315/app/scripts/kw.main-33551a3e.js"></script>
 
     <script src="https://www.youtube.com/iframe_api"></script>
 
-
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
-    <!--<link rel='stylesheet' href="bower_components/angular-socialshare/angular-socialshare.min.css">-->
     <link rel="stylesheet" type="text/css" href="css/wwyd.css">
 
     <title>What Would Yeezus Do?</title>
@@ -31,7 +27,7 @@
         <div id="main">
             <button class="btn btn-default center-block" ng-click="somethingElse()">SOMETHING ELSE</button>
 
-            <div class="twitter-stuff">
+            <div class="social">
                 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://localhost:3000/" data-text="WHAT WOULD YEEZUS DO? Brought to you by @wovfn " data-hashtags="WWYD">
                     Tweet
                 </a>
@@ -45,10 +41,38 @@
                     }
                     (document, 'script', 'twitter-wjs');
                 </script>
+
+                <!--
+                <script>
+                    window.fbAsyncInit = function() {
+                        FB.init({
+                            appId      : '423917774450092',
+                            xfbml      : true,
+                            version    : 'v2.3'
+                        });
+                    };
+
+                    (function(d, s, id){
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) {return;}
+                        js = d.createElement(s); js.id = id;
+                        js.src = "//connect.facebook.net/en_US/sdk.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+
+                <div
+                        class="fb-like"
+                        data-share="true"
+                        data-width="450"
+                        data-show-faces="true">
+                </div>
+                -->
             </div>
 
-            <div id="video-player" class="embed-responsive embed-responsive-16by9"></div>
+            <p>Now Playing: <span class="title">{{title}}</span></p>
 
+            <div id="video-player" class="embed-responsive embed-responsive-16by9"></div>
         </div>
 
         <div id="footer">
@@ -56,6 +80,8 @@
         </div>
 
     </div>
+
+
 
 </body>
 </html>

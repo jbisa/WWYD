@@ -4,7 +4,7 @@
  * Angular controller which talks to the model and updates the view
  */
 
-var myApp = angular.module('wwydApp', ['ngResource'])
+var myApp = angular.module('wwydApp', ['ngResource','ngAnimate'])
 
 myApp.controller('WWYDCtrl', ['$scope', '$sce', '$resource', function($scope, $sce, $resource) {
 

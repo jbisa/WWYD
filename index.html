@@ -11,7 +11,7 @@
 <body ng-app="wwydApp">
     <div id="fb-root"></div>
 
-    <div ng-controller="WWYDCtrl" ng-init="init()" class="container">
+    <div ng-controller="WWYDCtrl" class="container">
 
         <div id="header">
             <h2>WHAT WOULD YEEZUS DO?</h2>
@@ -30,11 +30,13 @@
         <div id="main">
 
 
-            <button class="btn btn-default center-block" ng-click="somethingElse()">DO SOMETHING ELSE</button>
+            <!--<button class="btn btn-default center-block" ng-click="somethingElse()">DO SOMETHING ELSE</button>
 
-            <p>Now Playing: <span class="title">{{title}}</span></p>
+            <p>Now Playing: <span class="title">{{title}}</span></p>-->
 
-            <div id="video-player" class="embed-responsive embed-responsive-16by9"></div>
+	    <div id="player"></div>
+
+            <!--<div id="video-player" class="embed-responsive embed-responsive-16by9"></div>-->
         </div>
 
         <div id="footer">
@@ -69,5 +71,70 @@
     <script type="text/javascript" src="js/services/wwydService.js"></script>
     <script type="text/javascript" src="js/directives/ytPlayer.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script src="http://www.youtube.com/player_api"></script>    
+    
+    <script type="text/javascript">
+      var yeezys = [
+      { title: "Touch The Sky", link: "YkwQbuAGLj4" }
+      ,{ title: "Only One", link: "WibQR0tQ0P8" }
+      ,{ title: "Homecoming", link: "LQ488QrqGE4" }
+      ,{ title: "Good Life", link: "FEKEjpTzB0Q" }
+      ,{ title: "Can't Tell Me Nothing", link: "E58qLXBfLrs" }
+      ,{ title: "Otis", link: "BoEKWtgJQAU" }
+      ,{ title: "Stronger", link: "PsO6ZnUZI0g" }
+      ,{ title: "Heartless", link: "Co0tTeuUVhU" }
+      ,{ title: "All Of The Lights", link: "HAfFfqiYLp0" }
+      ,{ title: "Gold Digger", link: "6vwNcNOTVzY" }
+      ,{ title: "Power", link: "L53gjP-TtGE" }
+      ,{ title: "Flashing Lights", link: "ila-hAUXR5U" }
+      ,{ title: "Amazing", link: "PH4JPgVD2SM" }
+      ,{ title: "Runaway", link: "Bm5iA4Zupek" }
+      ,{ title: "Love Lockdown", link: "HZwMX6T5Jhk" }
+      ,{ title: "Through The Wire", link: "uvb-1wjAtk4" }
+      ,{ title: "Diamonds From Sierra Leone", link: "92FCRmggNqQ" }
+      ,{ title: "Good Morning", link: "6CHs4x2uqcQ" }
+      ,{ title: "Slow Jamz", link: "hrMrqBcv6Mk" }
+      ];
+
+      var getYeezy = function() {
+        return yeezys[0].link;
+      }
+
+      var getNewYeezy = function() {
+        player.loadVideoById(yeezys[1].link);
+      }
+
+      // create youtube player
+      var player;
+      function onYouTubePlayerAPIReady() {
+       player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: getYeezy(),
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // autoplay video
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // when video ends
+      function onPlayerStateChange(event) {        
+        if(event.data === 0) {            
+            getNewYeezy();
+        }
+      }
+    
+</script>
+
+
+
+
 </body>
 </html>

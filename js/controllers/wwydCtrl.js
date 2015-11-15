@@ -12,6 +12,8 @@ myApp.controller('WWYDCtrl', ['$scope', '$sce', 'WWYDService', function($scope, 
     $scope.videos = [];
     $scope.indices = [];
     $scope.randomIndices = [];
+    $scope.videoPlayer = document.getElementById('video-player');
+    $scope.iframe = document.createElement('iframe');
 
     $scope.init = function() {
         // Eventually make this an angular service
@@ -35,11 +37,9 @@ myApp.controller('WWYDCtrl', ['$scope', '$sce', 'WWYDService', function($scope, 
 
             $scope.title = $scope.videos[$scope.randomIndices[$scope.count]].title;
 
-            var videoPlayer = document.getElementById('video-player');
-            var iframe = document.createElement('iframe');
-            iframe.class = "embed-responsive-item";
-            iframe.src = $sce.trustAsResourceUrl($scope.videos[$scope.randomIndices[$scope.count++]].link);
-            videoPlayer.appendChild(iframe);
+            $scope.iframe.class = "embed-responsive-item";
+            $scope.iframe.src = $sce.trustAsResourceUrl($scope.videos[$scope.randomIndices[$scope.count++]].link);
+            $scope.videoPlayer.appendChild($scope.iframe);
 	    //})
     };
 
@@ -65,13 +65,11 @@ myApp.controller('WWYDCtrl', ['$scope', '$sce', 'WWYDService', function($scope, 
         }
 
         $scope.title = $scope.videos[$scope.randomIndices[$scope.count]].title;
-
-        var videoPlayer = document.getElementById('video-player');
-        videoPlayer.removeChild(videoPlayer.childNodes[0]);
-        var iframe = document.createElement('iframe');
-        iframe.class = "embed-responsive-item";
-        iframe.src = $sce.trustAsResourceUrl($scope.videos[$scope.randomIndices[$scope.count++]].link);
-        videoPlayer.appendChild(iframe);
+	
+        $scope.videoPlayer.removeChild($scope.videoPlayer.childNodes[0]);
+        $scope.iframe.class = "embed-responsive-item";
+        $scope.iframe.src = $sce.trustAsResourceUrl($scope.videos[$scope.randomIndices[$scope.count++]].link);
+        $scope.videoPlayer.appendChild($scope.iframe);
     };
 
 }]);

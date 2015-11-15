@@ -6,7 +6,7 @@
 
 var myApp = angular.module('wwydApp', ['ngResource','ngAnimate'])
 
-myApp.controller('WWYDCtrl', ['$scope', '$sce', '$resource', function($scope, $sce, $resource) {
+myApp.controller('WWYDCtrl', ['$scope', '$sce', 'WWYDService', function($scope, $sce, WWYDService) {
 
     $scope.count = 0;
     $scope.videos = [];
@@ -15,9 +15,10 @@ myApp.controller('WWYDCtrl', ['$scope', '$sce', '$resource', function($scope, $s
 
     $scope.init = function() {
         // Eventually make this an angular service
-        var Video = $resource('/rest/videos');
-        Video.query(function (videos) {
-            $scope.videos = videos;
+        //var Video = $resource('/rest/videos');
+        //Video.query(function (videos) {
+	//$scope.videos = videos;
+	$scope.videos = WWYDService.getVideos();
 
             var videosLength = $scope.videos.length;
             var randomNumber = 0;
@@ -39,13 +40,13 @@ myApp.controller('WWYDCtrl', ['$scope', '$sce', '$resource', function($scope, $s
             iframe.class = "embed-responsive-item";
             iframe.src = $sce.trustAsResourceUrl($scope.videos[$scope.randomIndices[$scope.count++]].link);
             videoPlayer.appendChild(iframe);
-        })
+	    //})
     };
 
     $scope.somethingElse = function() {
         if ($scope.count == $scope.videos.length) {
             // re-shuffle the videos
-            alert("reshuffling!");
+            //alert("reshuffling!");
             $scope.count = 0;
             var videosLength = $scope.videos.length;
             var randomNumber = 0;

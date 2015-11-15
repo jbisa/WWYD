@@ -29,7 +29,7 @@
 
         <div id="main">
             <button class="btn btn-default center-block" onclick="getNewYeezy()">DO SOMETHING ELSE</button>
-            <!--<p>Now Playing: <span class="title"></span></p>-->
+            <p>Now Playing: <span id="songTitle" class="title"></span></p>
 	    <div id="player"></div>
             <!--<div id="video-player" class="embed-responsive embed-responsive-16by9"></div>-->
         </div>
@@ -68,12 +68,68 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script src="http://www.youtube.com/player_api"></script>    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     
     <script type="text/javascript">
       var yeezys = [
-        { title: "Touch The Sky", link: "YkwQbuAGLj4" }
-        ,{ title: "Only One", link: "WibQR0tQ0P8" }
-        ,{ title: "Homecoming", link: "LQ488QrqGE4" }
+      { title: "Touch The Sky", link: "YkwQbuAGLj4" }
+      ,{ title: "Only One", link: "WibQR0tQ0P8" }
+      ,{ title: "Homecoming", link: "LQ488QrqGE4" }
+      ,{ title: "Good Life", link: "FEKEjpTzB0Q" }
+      ,{ title: "Can't Tell Me Nothing", link: "E58qLXBfLrs" }
+      ,{ title: "Otis", link: "BoEKWtgJQAU" }
+      ,{ title: "Stronger", link: "PsO6ZnUZI0g" }
+      ,{ title: "Heartless", link: "Co0tTeuUVhU" }
+      ,{ title: "All Of The Lights", link: "HAfFfqiYLp0" }
+      ,{ title: "Gold Digger", link: "6vwNcNOTVzY" }
+      ,{ title: "Power", link: "L53gjP-TtGE" }
+      ,{ title: "Flashing Lights", link: "ila-hAUXR5U" }
+      ,{ title: "Amazing", link: "PH4JPgVD2SM" }
+      ,{ title: "Runaway", link: "Bm5iA4Zupek" }
+      ,{ title: "Love Lockdown", link: "HZwMX6T5Jhk" }
+      ,{ title: "Through The Wire", link: "uvb-1wjAtk4" }
+      ,{ title: "Diamonds From Sierra Leone", link: "92FCRmggNqQ" }
+      ,{ title: "Good Morning", link: "6CHs4x2uqcQ" }
+      ,{ title: "Slow Jamz", link: "hrMrqBcv6Mk" }
+      ,{ title: "Heard 'Em Say", link: "elVF7oG0pQs" }
+      ,{ title: "Welcome To Heartbreak", link: "wMH0e8kIZtE" }
+      ,{ title: "Jesus Walks", link: "MYF7H_fpc-g" }
+      ,{ title: "Coldest Winter", link: "n6rjQ9VVLDI" }
+      ,{ title: "All Falls Down", link: "8kyWDhB_QeI" }
+      ,{ title: "Paranoid", link: "irBP5FnksKc" }
+      ,{ title: "Dark Fantasy", link: "Jru3k78VXtc" }
+      ,{ title: "Ni**as In Paris", link: "gG_dA32oH44" }
+      ,{ title: "Mercy", link: "7Dqgr0wNyPo" }
+      ,{ title: "Blessings", link: "M6t47RI4bns" }
+      ,{ title: "No Church In The Wild", link: "FJt7gNi3Nr4" }
+      ,{ title: "Bound 2", link: "BBAtAM7vtgc" }
+      ,{ title: "FourFiveSeconds", link: "swRgOrKhP8M" }
+      ,{ title: "All Day", link: "_ABk7TmjnVk" }
+      ,{ title: "Knock You Down", link: "p_RqWocthcc" }
+      ,{ title: "American Boy", link: "Ic5vxw3eijY" }
+      ,{ title: "Put On", link: "1aEImx74gLA" }
+      ,{ title: "Cold", link: "ar-sduhNbi4" }
+      ,{ title: "White Dress", link: "INuOO8wWsSM" }
+      ,{ title: "Make Her Say", link: "AmSV2cim0Qg" }
+      ,{ title: "Hey Mama", link: "KqHxOC_kCP0" }
+      ,{ title: "New Slaves/Blood On The Leaves", link: "A6l-D-GEfRI" }
+      ,{ title: "Blame Game", link: "0hdQmd0uug0" }
+      ,{ title: "Walkin' On The Moon", link: "kqaTjzvMq18" }
+      ,{ title: "H*A*M", link: "UtoHI0JEfDg" }
+      ,{ title: "Forever", link: "eDuRoPIOBjE" }
+      ,{ title: "I Won", link: "i2VrxrGcWl8" }
+      ,{ title: "Birthday Song", link: "Y34jC4I1m70" }
+      ,{ title: "Wouldn't Get Far", link: "MlzrC-B6n-M" }
+      ,{ title: "This Way", link: "Rbo9QlcLcX8" }
+      ,{ title: "Erase Me", link: "ICaTsTkBPV8" }
+      ,{ title: "Ego", link: "iW5EzxFR4SM" }
+      ,{ title: "Lost In The World", link: "ofaRvNOV4SI" }
+      ,{ title: "The New Workout Plan", link: "X79oNWQ_tS4" }
+      ,{ title: "Whatever U Want", link: "KwmOsuovV54" }
+      ,{ title: "Number One", link: "mCAYStI0_EY" }
+      ,{ title: "Kinda Like A Big Deal", link: "3LD98c-9fGY" }
+      ,{ title: "Supernova", link: "UkZt7tZl2AE" }
+      ,{ title: "Anyone But Him", link: "qqDe_nAMr6U0" }
       ];
 
       // Copy yeezys array to use
@@ -81,7 +137,9 @@
 
       var getRandomYeezy = function() {
         var i = Math.floor(Math.random() * currentYeezys.length);
-        return currentYeezys.splice(i,1)[0].link;
+        var newYeezy = currentYeezys.splice(i,1)[0];
+        $('#songTitle').text(newYeezy.title);
+        return newYeezy.link;
       }
 
       var getNewYeezy = function() {

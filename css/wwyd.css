@@ -29,6 +29,10 @@ p {
     border-color:black;
 }
 
+#player {
+  padding-top: 15px;
+}
+
 #video-player {
     position:relative;
     top:15px;

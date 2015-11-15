@@ -28,14 +28,9 @@
         </div>
 
         <div id="main">
-
-
-            <!--<button class="btn btn-default center-block" ng-click="somethingElse()">DO SOMETHING ELSE</button>
-
-            <p>Now Playing: <span class="title">{{title}}</span></p>-->
-
+            <button class="btn btn-default center-block" onclick="getNewYeezy()">DO SOMETHING ELSE</button>
+            <!--<p>Now Playing: <span class="title"></span></p>-->
 	    <div id="player"></div>
-
             <!--<div id="video-player" class="embed-responsive embed-responsive-16by9"></div>-->
         </div>
 
@@ -76,42 +71,38 @@
     
     <script type="text/javascript">
       var yeezys = [
-      { title: "Touch The Sky", link: "YkwQbuAGLj4" }
-      ,{ title: "Only One", link: "WibQR0tQ0P8" }
-      ,{ title: "Homecoming", link: "LQ488QrqGE4" }
-      ,{ title: "Good Life", link: "FEKEjpTzB0Q" }
-      ,{ title: "Can't Tell Me Nothing", link: "E58qLXBfLrs" }
-      ,{ title: "Otis", link: "BoEKWtgJQAU" }
-      ,{ title: "Stronger", link: "PsO6ZnUZI0g" }
-      ,{ title: "Heartless", link: "Co0tTeuUVhU" }
-      ,{ title: "All Of The Lights", link: "HAfFfqiYLp0" }
-      ,{ title: "Gold Digger", link: "6vwNcNOTVzY" }
-      ,{ title: "Power", link: "L53gjP-TtGE" }
-      ,{ title: "Flashing Lights", link: "ila-hAUXR5U" }
-      ,{ title: "Amazing", link: "PH4JPgVD2SM" }
-      ,{ title: "Runaway", link: "Bm5iA4Zupek" }
-      ,{ title: "Love Lockdown", link: "HZwMX6T5Jhk" }
-      ,{ title: "Through The Wire", link: "uvb-1wjAtk4" }
-      ,{ title: "Diamonds From Sierra Leone", link: "92FCRmggNqQ" }
-      ,{ title: "Good Morning", link: "6CHs4x2uqcQ" }
-      ,{ title: "Slow Jamz", link: "hrMrqBcv6Mk" }
+        { title: "Touch The Sky", link: "YkwQbuAGLj4" }
+        ,{ title: "Only One", link: "WibQR0tQ0P8" }
+        ,{ title: "Homecoming", link: "LQ488QrqGE4" }
       ];
 
-      var getYeezy = function() {
-        return yeezys[0].link;
+      // Copy yeezys array to use
+      var currentYeezys = yeezys.slice(0);
+
+      var getRandomYeezy = function() {
+        var i = Math.floor(Math.random() * currentYeezys.length);
+        return currentYeezys.splice(i,1)[0].link;
       }
 
       var getNewYeezy = function() {
-        player.loadVideoById(yeezys[1].link);
+          if(currentYeezys.length == 0) {
+              currentYeezys = yeezys.slice(0);
+          }
+          player.loadVideoById(getRandomYeezy());
       }
 
-      // create youtube player
+      // Create Youtube player
       var player;
       function onYouTubePlayerAPIReady() {
-       player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: getYeezy(),
+      player = new YT.Player('player', {
+         height: '600',
+         width: '100%',
+         videoId: getRandomYeezy(),
+         playerVars: {
+            controls: 0,
+            modestbranding: 1,
+            showinfo: 0
+          },
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -119,18 +110,17 @@
         });
       }
 
-      // autoplay video
+      // Autoplay the video when ready
       function onPlayerReady(event) {
         event.target.playVideo();
       }
 
-      // when video ends
-      function onPlayerStateChange(event) {        
+      // Play new video once current video ends
+      function onPlayerStateChange(event) {
         if(event.data === 0) {            
             getNewYeezy();
         }
       }
-    
 </script>
 
 
